@@ -1,6 +1,6 @@
 package com.attendance.attendance_system.dao;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,36 +13,31 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name="check_in")
-public class CheckIn {
-
-	
-	private static final long serialVersionUID = 1305385188896511401L;
+@Table(name="user_location")
+public class UserLocation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-
-	@Column(name = "status")
-	private String status;
 	
 	@Column(name = "user_id")
 	private Integer userId;
 	
+	@Column(name = "latitude")
+	private Double latitude;
+
+	@Column(name = "longitude")
+	private Double longitude;
+	
 	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "created_at")
 	private Date createdAt;
 
-	@UpdateTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updated_at")
-	private Date updatedAt;
 
 	public Integer getId() {
 		return id;
@@ -50,14 +45,6 @@ public class CheckIn {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public Integer getUserId() {
@@ -68,6 +55,22 @@ public class CheckIn {
 		this.userId = userId;
 	}
 
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -76,12 +79,12 @@ public class CheckIn {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUpdatedAt() {
-		return updatedAt;
+	
+	@Override
+	public String toString() {
+		return "UserLocationMap [id=" + id + ", userId=" + userId + ", latitude=" + latitude + ", longitude="
+				+ longitude + ", createdAt=" + createdAt + "]";
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 }
